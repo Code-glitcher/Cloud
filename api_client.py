@@ -8,6 +8,9 @@ if "OPENWEATHER_API_KEY" in st.secrets:
     API_KEY = st.secrets["api_key"]["OPENWEATHER_API_KEY"]
 else:
 
+if "OPENWEATHER_API_KEY" in st.secrets:
+    API_KEY = st.secrets["OPENWEATHER_API_KEY"]
+else:
 # Load environment variables when this module is imported
     load_dotenv()
     API_KEY = os.getenv("OPENWEATHER_API_KEY")
