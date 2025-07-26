@@ -4,17 +4,15 @@ import os
 from dotenv import load_dotenv
 import streamlit as st
 
-if "OPENWEATHER_API_KEY" in st.secrets:
-    API_KEY = st.secrets["api_key"]["OPENWEATHER_API_KEY"]
-else:
+headers = {
+"authorization": st.secrets["OPENWEATHER_API_KEY"],
+"content-type": "application/json"
+}
 
-if "OPENWEATHER_API_KEY" in st.secrets:
-    API_KEY = st.secrets["OPENWEATHER_API_KEY"]
-else:
 # Load environment variables when this module is imported
-    load_dotenv()
-    API_KEY = os.getenv("OPENWEATHER_API_KEY")
-    BASE_URL_WEATHER = "http://api.openweathermap.org/data/2.5/weather"
+load_dotenv()
+API_KEY = os.getenv("OPENWEATHER_API_KEY")
+BASE_URL_WEATHER = "http://api.openweathermap.org/data/2.5/weather"
 
 def get_weather(city: str) -> dict | None:
     """
