@@ -14,4 +14,3 @@ def format_temperature(temp_celsius: float, unit: str = "C") -> str:
         return f"{temp_fahrenheit:.1f}°F"
     else:
         return f"{temp_celsius:.1f}°C"
-    

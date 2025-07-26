@@ -2,19 +2,12 @@
 import requests
 import os
 from dotenv import load_dotenv
-import streamlit as st
+import streamlit as st 
 
-# Load environment variables for local development (will be ignored in Streamlit Cloud)
+# Load environment variables when this module is imported
 load_dotenv()
-
-# Prioritize Streamlit secrets, fallback to environment variable for local dev
-API_KEY = st.secrets.get("OPENWEATHER_API_KEY", os.getenv("OPENWEATHER_API_KEY"))
-
-headers = {
-    "authorization": API_KEY, # Use the unified API_KEY here
-    "content-type": "application/json"
-}
-BASE_URL_WEATHER = "http://api.openweathermap.org/data/2.5/weather"
+API_KEY = os.getenv("OPENWEATHER_API_KEY")
+BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 
 def get_weather(city: str) -> dict | None:
     """
@@ -33,10 +26,10 @@ def get_weather(city: str) -> dict | None:
     params = {
         "q": city,
         "appid": API_KEY,
-        "units": "metric"
+        "units": "metric" 
     }
     try:
-        response = requests.get(BASE_URL_WEATHER, params=params)
+        response = requests.get(BASE_URL, params=params)
         response.raise_for_status()  # Raise an HTTPError for bad responses (4xx or 5xx)
         weather_data = response.json()
         return weather_data
@@ -56,4 +49,3 @@ def get_weather(city: str) -> dict | None:
         st.error(f"An error occurred: {e}")
         return None
 
-        

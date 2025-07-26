@@ -2,8 +2,6 @@
 import streamlit as st
 import folium
 from streamlit_folium import st_folium
-import pandas as pd
-import plotly.express as px
 
 def display_weather_metrics(weather_data: dict):
     """
@@ -25,7 +23,7 @@ def display_weather_metrics(weather_data: dict):
 
     # Display weather icon
     icon_code = weather_data['weather'][0]['icon']
-    icon_url = f"http://openweathermap.org/img/wn/{icon_code}@2x.png"
+    icon_url = f"https://openweathermap.org/img/wn/{icon_code}@2x.png"
     st.image(icon_url, width=100)
 
 def display_city_map(weather_data: dict):
@@ -39,7 +37,7 @@ def display_city_map(weather_data: dict):
     st.markdown("---")
     st.subheader("City Location:")
 
-    m = folium.Map(location=[lat, lon], zoom_start=10)
+    m = folium.Map(location=[lat, lon], zoom_start=10) 
     folium.Marker(
         [lat, lon],
         popup=f"{city_name_full}<br>Temp: {weather_data['main']['temp']}°C",
@@ -50,6 +48,8 @@ def display_city_map(weather_data: dict):
 
 
 def display_footer():
+    """
+    Displays the application footer.
+    """
     st.markdown("---")
-    st.markdown("Developed by Ebube")
-    
+    st.markdown("Developed by Ebubechukwu using Python and Streamlit")

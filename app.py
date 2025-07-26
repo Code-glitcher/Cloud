@@ -20,8 +20,6 @@ city = st.text_input("Enter city name:", "Enugu") # Default to a common city
 # Initialize session state variables if they don't exist
 if 'weather_data' not in st.session_state:
     st.session_state.weather_data = None
-if 'forecast_data' not in st.session_state:
-    st.session_state.forecast_data = None
 if 'city_searched' not in st.session_state:
     st.session_state.city_searched = ""
 
@@ -50,7 +48,6 @@ if st.session_state.weather_data:
     weather_data = st.session_state.weather_data # Get the data from session state
     display_weather_metrics(weather_data)
     display_city_map(weather_data)
-
 
 else:
     # Display a message if no data is loaded yet
